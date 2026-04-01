@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const PASSWORD = process.env.BRIEFING_PASSWORD ?? "changeme";
+// Statisches Token — die Passwortprüfung findet ausschließlich in /api/login statt.
+// Die Middleware prüft nur ob das Token-Cookie gesetzt ist.
 const COOKIE_NAME = "briefing_auth";
-const COOKIE_MAX_AGE = 60 * 60 * 8; // 8 Stunden
+const VALID_TOKEN = "granted";
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -12,9 +13,9 @@ export function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  // Cookie prüfen
+  // Cookie prüfen — gesetzt von /api/login nach erfolgreicher Passwortprüfung
   const cookie = req.cookies.get(COOKIE_NAME);
-  if (cookie?.value === PASSWORD) {
+  if (cookie?.value === VALID_TOKEN) {
     return NextResponse.next();
   }
 

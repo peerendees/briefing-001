@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const PASSWORD = process.env.BRIEFING_PASSWORD ?? "changeme";
 const COOKIE_NAME = "briefing_auth";
+const VALID_TOKEN = "granted";
 const COOKIE_MAX_AGE = 60 * 60 * 8; // 8 Stunden
 
 export async function POST(req: NextRequest) {
@@ -12,7 +13,7 @@ export async function POST(req: NextRequest) {
   }
 
   const res = NextResponse.json({ ok: true });
-  res.cookies.set(COOKIE_NAME, PASSWORD, {
+  res.cookies.set(COOKIE_NAME, VALID_TOKEN, {
     httpOnly: true,
     secure: true,
     sameSite: "lax",
