@@ -198,7 +198,7 @@ function GespraechPanel() {
         </ul>
       </Phase>
 
-      <Phase num="3" title="Einwandbehandlung: 20 % „Effizienz"" time="ca. 25 min">
+      <Phase num="3" title={'Einwandbehandlung: 20 % „Effizienz"'} time="ca. 25 min">
         <p>Das ist der Kern. Wir müssen uns einig sein, wie wir dieses Thema auf zwei Ebenen rahmen.</p>
 
         <div className="einwand">
