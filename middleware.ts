@@ -8,8 +8,13 @@ const VALID_TOKEN = "granted";
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // Login-Route und statische Assets immer durchlassen
-  if (pathname === "/login" || pathname.startsWith("/_next") || pathname.startsWith("/favicon")) {
+  // Login-Route, API-Routen und statische Assets immer durchlassen
+  if (
+    pathname === "/login" ||
+    pathname.startsWith("/api/") ||
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/favicon")
+  ) {
     return NextResponse.next();
   }
 
